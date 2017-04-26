@@ -12,7 +12,7 @@ const initialState = {
 function todos(state = initialState.todos, action) {
   switch (action.type) {
     case ActionTypes.ADD_TODO:
-      const id = state.ids.length;
+      const id = state.ids.reduce((max, id) => Math.max(max, id), -1) + 1;
       let todoWithId = {};
       todoWithId[id] = {
         text: action.text,
@@ -21,6 +21,14 @@ function todos(state = initialState.todos, action) {
       return {
         ids: state.ids.concat([id]),
         todosById: Object.assign({}, state.todosById, todoWithId)
+      };
+
+    case ActionTypes.TOGGLE_TODO:
+      let todosById = Object.assign({}, state.todosById);
+      todosById[action.id].completed = !state.todosById[action.id].completed;
+      return {
+        ids: state.ids,
+        todosById: Object.assign({}, state.todosById, todosById)
       };
 
     default:

@@ -10,4 +10,13 @@ describe('actions', () => {
     };
     expect(actions.addTodo(text)).toEqual(expectedAction);
   });
+
+  it('should create an action to add a todo', () => {
+    const id = 0;
+    const expectedAction = {
+      type: ActionTypes.TOGGLE_TODO,
+      id
+    };
+    expect(actions.toggleTodo(id)).toEqual(expectedAction);
+  });
 });

@@ -6,3 +6,10 @@ export function addTodo(text) {
     text
   };
 }
+
+export function toggleTodo(id) {
+  return {
+    type: ActionTypes.TOGGLE_TODO,
+    id
+  };
+}
