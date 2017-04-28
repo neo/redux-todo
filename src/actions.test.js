@@ -19,4 +19,12 @@ describe('actions', () => {
     };
     expect(actions.toggleTodo(id)).toEqual(expectedAction);
   });
+
+  it('should create an action to set the visibility filter', () => {
+    const expectedAction = {
+      type: ActionTypes.SET_VISIBILITY_FILTER,
+      filter: ActionTypes.VisibilityFilters.SHOW_ALL
+    };
+    expect(actions.setVisibilityFilter(ActionTypes.VisibilityFilters.SHOW_ALL)).toEqual(expectedAction);
+  });
 });

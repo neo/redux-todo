@@ -2,6 +2,7 @@ import * as ActionTypes from './ActionTypes';
 import reducer from './reducers';
 
 let initialState = {
+  visibilityFilter: ActionTypes.VisibilityFilters.SHOW_ALL,
   todos: {
     ids: [],
     todosById: {}
@@ -33,6 +34,15 @@ describe('reducers', () => {
     expect(initialState = reducer(initialState, {
       type: ActionTypes.TOGGLE_TODO,
       id
+    }))
+      .toEqual(expectedState);
+  });
+
+  it('should handle SET_VISIBILITY_FILTER', () => {
+    expectedState.visibilityFilter = ActionTypes.VisibilityFilters.SHOW_ACTIVE;
+    expect(initialState = reducer(initialState, {
+      type: ActionTypes.SET_VISIBILITY_FILTER,
+      filter: ActionTypes.VisibilityFilters.SHOW_ACTIVE
     }))
       .toEqual(expectedState);
   });

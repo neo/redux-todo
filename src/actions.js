@@ -13,3 +13,10 @@ export function toggleTodo(id) {
     id
   };
 }
+
+export function setVisibilityFilter(filter) {
+  return {
+    type: ActionTypes.SET_VISIBILITY_FILTER,
+    filter
+  };
+}
