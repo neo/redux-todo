@@ -13,10 +13,11 @@ function todos(state = initialState.todos, action) {
   switch (action.type) {
     case ActionTypes.ADD_TODO:
       const id = state.ids.reduce((max, id) => Math.max(max, id), -1) + 1;
-      let todoWithId = {};
-      todoWithId[id] = {
-        text: action.text,
-        completed: false
+      const todoWithId = {
+        [id]: {
+          text: action.text,
+          completed: false
+        }
       };
       return {
         ids: state.ids.concat([id]),

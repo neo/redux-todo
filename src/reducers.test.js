@@ -35,5 +35,5 @@ describe('reducers', () => {
       id
     }))
       .toEqual(expectedState);
-  })
+  });
 });
