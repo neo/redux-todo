@@ -7,7 +7,7 @@ import { addTodo } from '../store/actions';
 const mapDispatchToProps = dispatch => {
   return {
     addTodo: id => dispatch(addTodo(id))
-  }
+  };
 };
 
 class Header extends Component {
@@ -40,7 +40,6 @@ Header.propTypes = {
 };
 
 Header.defaultProps = {
-  addTodo: () => {}
 };
 
 export default connect(null, mapDispatchToProps)(Header);
