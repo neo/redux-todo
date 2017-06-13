@@ -13,7 +13,9 @@ const visibilityFilterNames = {
 
 const mapStateToProps = state => {
   return {
+    count: state.todos.ids.length,
     activeCount: state.todos.ids.map(id => state.todos.todosById[id]).filter(todo => !todo.completed).length,
+    completedCount: state.todos.ids.map(id => state.todos.todosById[id]).filter(todo => todo.completed).length,
     visibilityFilter: state.visibilityFilter
   };
 };
@@ -26,6 +28,10 @@ const mapDispatchToProps = dispatch => {
 
 class Footer extends Component {
   render() {
+    if (this.props.count === 0) {
+      return null;
+    }
+
     return (
       <footer className="footer">
         <span className="todo-count">
@@ -48,16 +54,22 @@ class Footer extends Component {
             ))
           }
         </ul>
-        <button className="clear-completed">Clear completed</button>
+        {
+          this.props.completedCount &&
+          <button className="clear-completed" onClick={this.props.clearCompleted}>Clear completed</button>
+        }
       </footer>
     );
   }
 }
 
 Footer.propTypes = {
+  count: PropTypes.number.isRequired,
+  completedCount: PropTypes.number.isRequired,
   activeCount: PropTypes.number.isRequired,
   visibilityFilter: PropTypes.oneOf(Object.keys(VisibilityFilters)).isRequired,
   setVisibilityFilter: PropTypes.func.isRequired,
+  clearCompleted: PropTypes.func.isRequired,
 };
 
 Footer.defaultProps = {};
