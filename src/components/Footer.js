@@ -13,6 +13,7 @@ const visibilityFilterNames = {
 
 const mapStateToProps = state => {
   return {
+    activeCount: state.todos.ids.map(id => state.todos.todosById[id]).filter(todo => !todo.completed).length,
     visibilityFilter: state.visibilityFilter
   };
 };
@@ -28,6 +29,8 @@ class Footer extends Component {
     return (
       <footer className="footer">
         <span className="todo-count">
+          <strong>{this.props.activeCount}</strong>
+          <span> {this.props.activeCount === 1 ? 'item' : 'items'} left</span>
         </span>
         <ul className="filters">
           {
@@ -52,7 +55,9 @@ class Footer extends Component {
 }
 
 Footer.propTypes = {
-  count: PropTypes.number.isRequired
+  activeCount: PropTypes.number.isRequired,
+  visibilityFilter: PropTypes.oneOf(Object.keys(VisibilityFilters)).isRequired,
+  setVisibilityFilter: PropTypes.func.isRequired,
 };
 
 Footer.defaultProps = {};

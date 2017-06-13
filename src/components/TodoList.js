@@ -58,7 +58,7 @@ TodoList.propTypes = {
     ids: PropTypes.arrayOf(PropTypes.number),
     todosById: PropTypes.object.isRequired
   }),
-  visibilityFilter: PropTypes.string.isRequired,
+  visibilityFilter: PropTypes.oneOf(Object.keys(VisibilityFilters)).isRequired,
   toggleTodo: PropTypes.func.isRequired
 };
 
