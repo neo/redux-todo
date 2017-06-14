@@ -14,6 +14,12 @@ export function toggleTodo(id) {
   };
 }
 
+export function clearCompleted() {
+  return {
+    type: ActionTypes.CLEAR_COMPLETED
+  };
+}
+
 export function setVisibilityFilter(filter) {
   return {
     type: ActionTypes.SET_VISIBILITY_FILTER,

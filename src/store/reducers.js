@@ -43,6 +43,13 @@ function todos(state = initialState.todos, action) {
         todosById: Object.assign({}, state.todosById, todosById)
       };
 
+    case ActionTypes.CLEAR_COMPLETED:
+      const ids = state.ids.filter(id => !state.todosById[id].completed);
+      return {
+        ids,
+        todosById: state.todosById
+      };
+
     default:
       return state;
   }

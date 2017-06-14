@@ -20,6 +20,13 @@ describe('actions', () => {
     expect(actions.toggleTodo(id)).toEqual(expectedAction);
   });
 
+  it('should create an action to clear completed todos', () => {
+    const expectedAction = {
+      type: ActionTypes.CLEAR_COMPLETED
+    };
+    expect(actions.clearCompleted()).toEqual(expectedAction);
+  });
+
   it('should create an action to set the visibility filter', () => {
     const expectedAction = {
       type: ActionTypes.SET_VISIBILITY_FILTER,

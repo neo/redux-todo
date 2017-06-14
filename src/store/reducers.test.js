@@ -38,6 +38,14 @@ describe('reducers', () => {
       .toEqual(expectedState);
   });
 
+  it('should handle CLEAR_COMPLETED', () => {
+    expectedState.todos.ids = expectedState.todos.ids.filter(id => !expectedState.todos.todosById[id].completed);
+    expect(initialState = reducer(initialState, {
+      type: ActionTypes.CLEAR_COMPLETED
+    }))
+      .toEqual(expectedState);
+  });
+
   it('should handle SET_VISIBILITY_FILTER', () => {
     expectedState.visibilityFilter = ActionTypes.VisibilityFilters.SHOW_ACTIVE;
     expect(initialState = reducer(initialState, {
