@@ -2,16 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'todomvc-app-css/index.css';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
 
-import todoApp from './store/reducers';
+import createPersistentStore from './store/create-store';
 import App from './components/App';
 import './style.css';
 
-let store = createStore(
-  todoApp,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+const store = createPersistentStore();
 
 ReactDOM.render(
   <Provider store={store}>
