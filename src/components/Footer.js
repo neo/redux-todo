@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { VisibilityFilters } from '../store/ActionTypes';
+import { VisibilityFilters } from '../store/action-types';
 import { clearCompleted, setVisibilityFilter } from '../store/actions';
 
 const visibilityFilterNames = {

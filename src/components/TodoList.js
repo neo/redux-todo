@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { toggleTodo } from '../store/actions';
-import { VisibilityFilters } from '../store/ActionTypes';
+import { VisibilityFilters } from '../store/action-types';
 
 import TodoItem from './TodoItem';
 

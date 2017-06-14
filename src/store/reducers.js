@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import * as ActionTypes from './ActionTypes';
+import * as ActionTypes from './action-types';
 
 const initialState = {
   visibilityFilter: ActionTypes.VisibilityFilters.SHOW_ALL,
@@ -23,7 +23,7 @@ function visibilityFilter(state = initialState.visibilityFilter, action) {
 function todos(state = initialState.todos, action) {
   switch (action.type) {
     case ActionTypes.ADD_TODO:
-      const id = state.ids.reduce((max, id) => Math.max(max, id), -1) + 1;
+      const id = Object.keys(state.todosById).reduce((max, id) => Math.max(max, id), -1) + 1;
       const todoWithId = {
         [id]: {
           text: action.text,
