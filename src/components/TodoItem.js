@@ -6,9 +6,12 @@ export default class TodoItem extends Component {
     return (
       <li className={this.props.completed ? 'completed' : ''}>
         <div className="view">
-          <input type="checkbox"
+          <input
+            className="toggle"
+            type="checkbox"
+            checked={this.props.completed}
             onChange={this.props.onToggle.bind(this, this.props.id)}
-            className="toggle"/>
+          />
           <label>{this.props.text}</label>
           <button className="destory"/>
         </div>
