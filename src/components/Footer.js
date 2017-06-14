@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { VisibilityFilters } from '../store/ActionTypes';
-import { setVisibilityFilter } from '../store/actions';
+import { clearCompleted, setVisibilityFilter } from '../store/actions';
 
 const visibilityFilterNames = {
   [VisibilityFilters.SHOW_ALL]: 'All',
@@ -22,6 +22,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    clearCompleted: () => dispatch(clearCompleted()),
     setVisibilityFilter: filter => dispatch(setVisibilityFilter(filter))
   };
 };
