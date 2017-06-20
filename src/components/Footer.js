@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { VisibilityFilters } from '../store/action-types';
-import { clearCompleted, setVisibilityFilter } from '../store/actions';
 
 const visibilityFilterNames = {
   [VisibilityFilters.SHOW_ALL]: 'All',
@@ -16,14 +15,6 @@ const mapStateToProps = state => {
     count: state.todos.ids.length,
     activeCount: state.todos.ids.map(id => state.todos.todosById[id]).filter(todo => !todo.completed).length,
     completedCount: state.todos.ids.map(id => state.todos.todosById[id]).filter(todo => todo.completed).length,
-    visibilityFilter: state.visibilityFilter
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    clearCompleted: () => dispatch(clearCompleted()),
-    setVisibilityFilter: filter => dispatch(setVisibilityFilter(filter))
   };
 };
 
@@ -56,7 +47,7 @@ class Footer extends PureComponent {
           }
         </ul>
         {
-          this.props.completedCount &&
+          Boolean(this.props.completedCount) &&
           <button className="clear-completed" onClick={this.props.clearCompleted}>Clear completed</button>
         }
       </footer>
@@ -75,4 +66,4 @@ Footer.propTypes = {
 
 Footer.defaultProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Footer);
+export default connect(mapStateToProps)(Footer);

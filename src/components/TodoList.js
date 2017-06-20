@@ -1,24 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 
-import { toggleTodo } from '../store/actions';
 import { VisibilityFilters } from '../store/action-types';
 
 import TodoItem from './TodoItem';
-
-const mapStateToProps = state => {
-  return {
-    todos: state.todos,
-    visibilityFilter: state.visibilityFilter
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    toggleTodo: id => dispatch(toggleTodo(id))
-  };
-};
 
 class TodoList extends PureComponent {
   render() {
@@ -65,4 +50,4 @@ TodoList.propTypes = {
 TodoList.defaultProps = {
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
+export default TodoList;

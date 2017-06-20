@@ -1,14 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-
-import { addTodo } from '../store/actions';
-
-const mapDispatchToProps = dispatch => {
-  return {
-    addTodo: id => dispatch(addTodo(id))
-  };
-};
 
 class Header extends PureComponent {
   handleSubmit = e => {
@@ -42,4 +33,4 @@ Header.propTypes = {
 Header.defaultProps = {
 };
 
-export default connect(null, mapDispatchToProps)(Header);
+export default Header;
