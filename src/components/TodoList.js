@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -20,7 +20,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-class TodoList extends Component {
+class TodoList extends PureComponent {
   render() {
     if (this.props.todos.ids.length === 0) {
       return null;

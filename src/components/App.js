@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 import Header from './Header';
 import TodoList from './TodoList';
 import Footer from './Footer';
 
-class App extends Component {
+class App extends PureComponent {
   render() {
     return (
       <section className="todoapp">

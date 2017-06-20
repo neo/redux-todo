@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -27,7 +27,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-class Footer extends Component {
+class Footer extends PureComponent {
   render() {
     if (this.props.count === 0) {
       return null;
