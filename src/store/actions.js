@@ -14,6 +14,13 @@ export function toggleTodo(id) {
   };
 }
 
+export function deleteTodo(id) {
+  return {
+    type: ActionTypes.DELETE_TODO,
+    id
+  };
+}
+
 export function completeAll() {
   return {
     type: ActionTypes.COMPLETE_ALL

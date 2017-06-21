@@ -33,7 +33,8 @@ class TodoList extends PureComponent {
               })
               .map(id => <TodoItem
                 key={id} id={id}
-                onToggle={this.props.toggleTodo}
+                onToggle={this.props.toggleTodo.bind(this, id)}
+                onDelete={this.props.deleteTodo.bind(this, id)}
                 {...this.props.todos.todosById[id]}
               />)
           }
@@ -51,6 +52,7 @@ TodoList.propTypes = {
   }),
   visibilityFilter: PropTypes.oneOf(Object.keys(VisibilityFilters)).isRequired,
   toggleTodo: PropTypes.func.isRequired,
+  deleteTodo: PropTypes.func.isRequired,
   completeAll: PropTypes.func.isRequired,
 };
 

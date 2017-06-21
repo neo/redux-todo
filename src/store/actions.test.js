@@ -11,13 +11,22 @@ describe('actions', () => {
     expect(actions.addTodo(text)).toEqual(expectedAction);
   });
 
-  it('should create an action to add a todo', () => {
+  it('should create an action to toggle a todo', () => {
     const id = 0;
     const expectedAction = {
       type: ActionTypes.TOGGLE_TODO,
       id
     };
     expect(actions.toggleTodo(id)).toEqual(expectedAction);
+  });
+
+  it('should create an action to delete a todo', () => {
+    const id = 0;
+    const expectedAction = {
+      type: ActionTypes.DELETE_TODO,
+      id
+    };
+    expect(actions.deleteTodo(id)).toEqual(expectedAction);
   });
 
   it('should create an action to complete all todos', () => {

@@ -43,6 +43,12 @@ function todos(state = initialState.todos, action) {
         todosById: Object.assign({}, state.todosById, todosById)
       };
 
+    case ActionTypes.DELETE_TODO:
+      return {
+        ids: state.ids.filter(id => id !== action.id),
+        todosById: state.todosById
+      };
+
     case ActionTypes.COMPLETE_ALL:
       const areAllCompleted = state.ids.map(id => state.todosById[id]).every(todo => todo.completed);
       state.ids.forEach(id => todosById[id].completed = !areAllCompleted);
@@ -52,9 +58,8 @@ function todos(state = initialState.todos, action) {
       };
 
     case ActionTypes.CLEAR_COMPLETED:
-      const ids = state.ids.filter(id => !state.todosById[id].completed);
       return {
-        ids,
+        ids: state.ids.filter(id => !state.todosById[id].completed),
         todosById: state.todosById
       };
 
