@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 
 import { VisibilityFilters } from '../store/action-types';
 
@@ -10,25 +9,22 @@ const visibilityFilterNames = {
   [VisibilityFilters.SHOW_COMPLETED]: 'Completed'
 };
 
-const mapStateToProps = state => {
-  return {
-    count: state.todos.ids.length,
-    activeCount: state.todos.ids.map(id => state.todos.todosById[id]).filter(todo => !todo.completed).length,
-    completedCount: state.todos.ids.map(id => state.todos.todosById[id]).filter(todo => todo.completed).length,
-  };
-};
-
 class Footer extends PureComponent {
   render() {
-    if (this.props.count === 0) {
+    const todos = this.props.todos;
+
+    if (todos.ids.length === 0) {
       return null;
     }
+
+    const activeCount = todos.ids.map(id => todos.todosById[id]).filter(todo => !todo.completed).length;
+    const completedCount = todos.ids.map(id => todos.todosById[id]).filter(todo => todo.completed).length;
 
     return (
       <footer className="footer">
         <span className="todo-count">
-          <strong>{this.props.activeCount}</strong>
-          <span> {this.props.activeCount === 1 ? 'item' : 'items'} left</span>
+          <strong>{activeCount}</strong>
+          <span> {activeCount === 1 ? 'item' : 'items'} left</span>
         </span>
         <ul className="filters">
           {
@@ -47,7 +43,7 @@ class Footer extends PureComponent {
           }
         </ul>
         {
-          Boolean(this.props.completedCount) &&
+          Boolean(completedCount) &&
           <button className="clear-completed" onClick={this.props.clearCompleted}>Clear completed</button>
         }
       </footer>
@@ -56,9 +52,10 @@ class Footer extends PureComponent {
 }
 
 Footer.propTypes = {
-  count: PropTypes.number.isRequired,
-  completedCount: PropTypes.number.isRequired,
-  activeCount: PropTypes.number.isRequired,
+  todos: PropTypes.shape({
+    ids: PropTypes.arrayOf(PropTypes.number),
+    todosById: PropTypes.object.isRequired
+  }),
   visibilityFilter: PropTypes.oneOf(Object.keys(VisibilityFilters)).isRequired,
   setVisibilityFilter: PropTypes.func.isRequired,
   clearCompleted: PropTypes.func.isRequired,
@@ -66,4 +63,4 @@ Footer.propTypes = {
 
 Footer.defaultProps = {};
 
-export default connect(mapStateToProps)(Footer);
+export default Footer;
