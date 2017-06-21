@@ -8,7 +8,10 @@ import Header from './Header';
 import TodoList from './TodoList';
 import Footer from './Footer';
 
-const mapStateToProps = state => state;
+const mapStateToProps = state => Object.assign({
+  completedCount: state.todos.ids.map(id => state.todos.todosById[id])
+    .reduce((count, todo) => todo.completed ? count + 1 : count, 0)
+}, state);
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
@@ -20,11 +23,13 @@ class App extends PureComponent {
           addTodo={this.props.addTodo}
         />
         <TodoList
+          completedCount={this.props.completedCount}
           todos={this.props.todos}
           visibilityFilter={this.props.visibilityFilter}
           toggleTodo={this.props.toggleTodo}
         />
         <Footer
+          completedCount={this.props.completedCount}
           todos={this.props.todos}
           visibilityFilter={this.props.visibilityFilter}
           setVisibilityFilter={this.props.setVisibilityFilter}

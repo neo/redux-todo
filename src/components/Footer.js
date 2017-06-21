@@ -11,14 +11,13 @@ const visibilityFilterNames = {
 
 class Footer extends PureComponent {
   render() {
-    const todos = this.props.todos;
+    const totalCount = this.props.todos.ids.length;
 
-    if (todos.ids.length === 0) {
+    if (totalCount === 0) {
       return null;
     }
 
-    const activeCount = todos.ids.map(id => todos.todosById[id]).filter(todo => !todo.completed).length;
-    const completedCount = todos.ids.map(id => todos.todosById[id]).filter(todo => todo.completed).length;
+    const activeCount = totalCount - this.props.completedCount;
 
     return (
       <footer className="footer">
@@ -43,7 +42,7 @@ class Footer extends PureComponent {
           }
         </ul>
         {
-          Boolean(completedCount) &&
+          Boolean(this.props.completedCount) &&
           <button className="clear-completed" onClick={this.props.clearCompleted}>Clear completed</button>
         }
       </footer>
@@ -52,6 +51,7 @@ class Footer extends PureComponent {
 }
 
 Footer.propTypes = {
+  completedCount: PropTypes.number.isRequired,
   todos: PropTypes.shape({
     ids: PropTypes.arrayOf(PropTypes.number),
     todosById: PropTypes.object.isRequired

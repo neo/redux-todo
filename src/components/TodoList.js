@@ -13,8 +13,11 @@ class TodoList extends PureComponent {
 
     return (
       <section className="main">
-        <input type="checkbox"
-          className="toggle-all"/>
+        <input
+          type="checkbox"
+          className="toggle-all"
+          checked={this.props.completedCount === this.props.todos.ids.length}
+        />
         <label htmlFor="toggle-all">Mark all as complete</label>
         <ul className="todo-list">
           {
@@ -39,6 +42,7 @@ class TodoList extends PureComponent {
 }
 
 TodoList.propTypes = {
+  completedCount: PropTypes.number.isRequired,
   todos: PropTypes.shape({
     ids: PropTypes.arrayOf(PropTypes.number),
     todosById: PropTypes.object.isRequired
