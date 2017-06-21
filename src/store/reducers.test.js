@@ -28,9 +28,40 @@ describe('reducers', () => {
       .toEqual(expectedState);
   });
 
+  it('should handle ADD_TODO', () => {
+    const id = 1;
+    const text = 'foobar';
+    expectedState.todos.ids = expectedState.todos.ids.concat([id]);
+    expectedState.todos.todosById[id] = { text, completed: false };
+    expect(initialState = reducer(initialState, {
+      type: ActionTypes.ADD_TODO,
+      text
+    }))
+      .toEqual(expectedState);
+  });
+
   it('should handle TOGGLE_TODO', () => {
     const id = 0;
     expectedState.todos.todosById[id].completed = true;
+    expect(initialState = reducer(initialState, {
+      type: ActionTypes.TOGGLE_TODO,
+      id
+    }))
+      .toEqual(expectedState);
+  });
+
+  it('should handle COMPLETE_ALL', () => {
+    const areAllCompleted = expectedState.todos.ids.every(id => expectedState.todos.todosById[id].completed);
+    expectedState.todos.ids.forEach(id => expectedState.todos.todosById[id].completed = !areAllCompleted);
+    expect(initialState = reducer(initialState, {
+      type: ActionTypes.COMPLETE_ALL
+    }))
+      .toEqual(expectedState);
+  });
+
+  it('should handle TOGGLE_TODO', () => {
+    const id = 0;
+    expectedState.todos.todosById[id].completed = false;
     expect(initialState = reducer(initialState, {
       type: ActionTypes.TOGGLE_TODO,
       id

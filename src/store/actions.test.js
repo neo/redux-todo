@@ -20,6 +20,13 @@ describe('actions', () => {
     expect(actions.toggleTodo(id)).toEqual(expectedAction);
   });
 
+  it('should create an action to complete all todos', () => {
+    const expectedAction = {
+      type: ActionTypes.COMPLETE_ALL
+    };
+    expect(actions.completeAll()).toEqual(expectedAction);
+  });
+
   it('should create an action to clear completed todos', () => {
     const expectedAction = {
       type: ActionTypes.CLEAR_COMPLETED

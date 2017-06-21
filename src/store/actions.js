@@ -14,6 +14,12 @@ export function toggleTodo(id) {
   };
 }
 
+export function completeAll() {
+  return {
+    type: ActionTypes.COMPLETE_ALL
+  };
+}
+
 export function clearCompleted() {
   return {
     type: ActionTypes.CLEAR_COMPLETED

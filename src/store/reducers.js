@@ -21,6 +21,7 @@ function visibilityFilter(state = initialState.visibilityFilter, action) {
 }
 
 function todos(state = initialState.todos, action) {
+  let todosById = Object.assign({}, state.todosById);
   switch (action.type) {
     case ActionTypes.ADD_TODO:
       const id = Object.keys(state.todosById).reduce((max, id) => Math.max(max, id), -1) + 1;
@@ -36,11 +37,18 @@ function todos(state = initialState.todos, action) {
       };
 
     case ActionTypes.TOGGLE_TODO:
-      let todosById = Object.assign({}, state.todosById);
       todosById[action.id].completed = !state.todosById[action.id].completed;
       return {
         ids: state.ids,
         todosById: Object.assign({}, state.todosById, todosById)
+      };
+
+    case ActionTypes.COMPLETE_ALL:
+      const areAllCompleted = state.ids.map(id => state.todosById[id]).every(todo => todo.completed);
+      state.ids.forEach(id => todosById[id].completed = !areAllCompleted);
+      return {
+        ids: state.ids,
+        todosById
       };
 
     case ActionTypes.CLEAR_COMPLETED:

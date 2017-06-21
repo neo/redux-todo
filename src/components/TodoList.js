@@ -15,8 +15,10 @@ class TodoList extends PureComponent {
       <section className="main">
         <input
           type="checkbox"
+          id="toggle-all"
           className="toggle-all"
           checked={this.props.completedCount === this.props.todos.ids.length}
+          onChange={this.props.completeAll}
         />
         <label htmlFor="toggle-all">Mark all as complete</label>
         <ul className="todo-list">
@@ -48,7 +50,8 @@ TodoList.propTypes = {
     todosById: PropTypes.object.isRequired
   }),
   visibilityFilter: PropTypes.oneOf(Object.keys(VisibilityFilters)).isRequired,
-  toggleTodo: PropTypes.func.isRequired
+  toggleTodo: PropTypes.func.isRequired,
+  completeAll: PropTypes.func.isRequired,
 };
 
 TodoList.defaultProps = {

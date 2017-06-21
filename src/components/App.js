@@ -27,6 +27,7 @@ class App extends PureComponent {
           todos={this.props.todos}
           visibilityFilter={this.props.visibilityFilter}
           toggleTodo={this.props.toggleTodo}
+          completeAll={this.props.completeAll}
         />
         <Footer
           completedCount={this.props.completedCount}
